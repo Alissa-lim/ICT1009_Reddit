@@ -73,7 +73,7 @@ public class BehindScene {
 		preparedStmt.execute();
 	}
 	
-	protected void StartCrawl () {
+	protected void StartCrawl () throws SQLException {
 		int counter = 0;
 		if (connectReddit()) {
 			//Creating a Paginator and set subreddit to movies
@@ -97,7 +97,14 @@ public class BehindScene {
 		    			System.out.println("=========================================");
 		    			while (it.hasNext()) {
 		    				PublicContribution<?> thing = it.next().getSubject();
-		    				System.out.println("    "+counter+"."+incounter+")"+thing.getBody());
+		    				System.out.println("    "+counter+"."+incounter+")"+"Comments: "+thing.getBody());
+		    				String user = thing.getAuthor();
+		    				String comment = thing.getBody();
+		    				if (comment == null) {
+		    					comment = "No comment";
+		    				}
+		    				executeQuery(user, comment);
+		    				System.out.println("USer: " + thing.getAuthor());
 		    				incounter++;
 		    				
 		    			}

@@ -1,5 +1,6 @@
 package testPackage;
 
+import java.sql.SQLException;
 import java.util.*;
 
 import com.squareup.moshi.JsonDataException;
@@ -27,7 +28,7 @@ import net.dean.jraw.tree.RootCommentNode;
 
 public class Main {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws SQLException{
 		 //Getting input from User
         System.out.print("Please enter keyword: ");
         Scanner input = new Scanner(System.in);
